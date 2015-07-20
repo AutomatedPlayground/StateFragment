@@ -7,36 +7,51 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import icepick.Icepick;
+import icepick.Icicle;
 import pl.automatedplayground.myloader.R;
 import pl.automatedplayground.myloader.loader.data.DataModel;
 import pl.automatedplayground.myloader.loader.data.FragmentStates;
 import pl.automatedplayground.myloader.loader.data.GenericDataProvider;
+import pl.automatedplayground.myloader.loader.listeners.ErrorOrProblemFragmentListener;
 import pl.automatedplayground.myloader.loader.listeners.NoDataActionWorker;
 import pl.automatedplayground.myloader.loader.listeners.ResponseListener;
-import pl.automatedplayground.myloader.loader.listeners.ErrorOrProblemFragmentListener;
 
 /**
  * Created by adrian on 20.07.15.
  */
-public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDER extends GenericDataProvider<DATAMODEL>,NODATAWORKER extends NoDataActionWorker, LOADER extends LoaderFragment<DATAPROVIDER>,
+public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDER extends GenericDataProvider<DATAMODEL>, NODATAWORKER extends NoDataActionWorker, LOADER extends LoaderFragment<DATAPROVIDER>,
         RETRY extends ErrorOrProblemFragment, NODATA extends NoDataFragment<NODATAWORKER>, DATA extends DataFragment<DATAMODEL>> extends Fragment implements ErrorOrProblemFragmentListener {
 
 
     private static int staticID = 1;
-    boolean forcedLoader = false;
+    @Icicle
     private int generatedID = -1;
+    @Icicle
     private FragmentStates currentMode = null;
 
     private DATAPROVIDER mProvider;
 
     public DATAPROVIDER getDataProvider() {
-        if (mProvider==null)
+        if (mProvider == null)
             setDataProvider(bindDataProvider());
         return mProvider;
     }
 
     public void setDataProvider(DATAPROVIDER mProvider) {
         this.mProvider = mProvider;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Icepick.restoreInstanceState(this, savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
     }
 
     @Override
@@ -63,10 +78,8 @@ public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDE
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (forcedLoader)
+        if (mProvider!=null && currentMode == null)
             setState(FragmentStates.LOADER, true);
-        else
-            setState(getDefaultState(), false);
     }
 
     /**
@@ -126,17 +139,20 @@ public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDE
     }
 
     private Fragment createFragmentForMode(FragmentStates currentMode) {
+        Fragment output = null;
         switch (currentMode) {
             case ERROR_OR_PROBLEM:
-                return createFragmentForRetry(getDataProvider()).setRetryActionWorker(this);
+                output = createFragmentForRetry(getDataProvider()).setRetryActionWorker(this);
             case DATA:
-                return createFragmentForView(getDataProvider()).setData(getDataProvider().getDataForModelClass(getDataModelSimpleInstance()));
+                output = createFragmentForView(getDataProvider()).setData(getDataProvider().getDataForModelClass(getDataModelSimpleInstance()));
             case NODATA:
-                return createFragmentForNoData(getDataProvider()).setActionWorker(createNoDataActionWorker());
+                output = createFragmentForNoData(getDataProvider()).setActionWorker(createNoDataActionWorker());
             case LOADER:
             default:
-                return createFragmentForLoader(getDataProvider());
+                output = createFragmentForLoader(getDataProvider());
         }
+        output.setRetainInstance(true);
+        return output;
     }
 
     /**
@@ -163,6 +179,7 @@ public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDE
 
     /**
      * Create worker for actions made on no-data screen. Can be null
+     *
      * @return
      */
     protected abstract NODATAWORKER createNoDataActionWorker();
