@@ -4,9 +4,10 @@ import android.support.v4.app.Fragment;
 
 import pl.automatedplayground.myloader.loader.data.DataModel;
 
-/**
- * Created by adrian on 20.07.15.
- */
+/*
+   Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.
+   Copyright (c) 2015 Automated Playground under Apache 2.0 License
+*/
 public class DataFragment<DATAMODEL extends DataModel> extends Fragment {
     protected DATAMODEL mData;
 

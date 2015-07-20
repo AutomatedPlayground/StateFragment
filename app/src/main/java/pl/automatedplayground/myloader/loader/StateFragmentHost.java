@@ -17,9 +17,10 @@ import pl.automatedplayground.myloader.loader.listeners.ErrorOrProblemFragmentLi
 import pl.automatedplayground.myloader.loader.listeners.NoDataActionWorker;
 import pl.automatedplayground.myloader.loader.listeners.ResponseListener;
 
-/**
- * Created by adrian on 20.07.15.
- */
+/*
+   Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.
+   Copyright (c) 2015 Automated Playground under Apache 2.0 License
+*/
 public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDER extends GenericDataProvider<DATAMODEL>, NODATAWORKER extends NoDataActionWorker, LOADER extends LoaderFragment<DATAPROVIDER>,
         RETRY extends ErrorOrProblemFragment, NODATA extends NoDataFragment<NODATAWORKER>, DATA extends DataFragment<DATAMODEL>> extends Fragment implements ErrorOrProblemFragmentListener {
 

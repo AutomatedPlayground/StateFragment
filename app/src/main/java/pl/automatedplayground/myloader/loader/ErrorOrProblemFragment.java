@@ -11,9 +11,10 @@ import android.widget.Toast;
 import pl.automatedplayground.myloader.R;
 import pl.automatedplayground.myloader.loader.listeners.ErrorOrProblemFragmentListener;
 
-/**
- * Created by adrian on 20.07.15.
- */
+/*
+   Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.
+   Copyright (c) 2015 Automated Playground under Apache 2.0 License
+*/
 public abstract class ErrorOrProblemFragment extends Fragment {
     private ErrorOrProblemFragmentListener mListener;
 

@@ -2,9 +2,10 @@ package pl.automatedplayground.myloader.loader.data;
 
 import pl.automatedplayground.myloader.loader.listeners.ResponseListener;
 
-/**
- * Created by adrian on 20.07.15.
- */
+/*
+   Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.
+   Copyright (c) 2015 Automated Playground under Apache 2.0 License
+*/
 public interface GenericDataProvider<DATAMODEL extends DataModel> {
     /**
      * Prebuffer data
