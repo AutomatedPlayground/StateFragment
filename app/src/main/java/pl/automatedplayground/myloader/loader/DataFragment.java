@@ -11,6 +11,10 @@ import pl.automatedplayground.myloader.loader.data.DataModel;
 public class DataFragment<DATAMODEL extends DataModel> extends Fragment {
     protected DATAMODEL mData;
 
+    public DATAMODEL getData() {
+        return mData;
+    }
+
     public DataFragment setData(DATAMODEL data) {
         mData = data;
         return this;

@@ -146,10 +146,13 @@ public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDE
         switch (currentMode) {
             case ERROR_OR_PROBLEM:
                 output = createFragmentForRetry(getDataProvider()).setRetryActionWorker(this);
+                break;
             case DATA:
                 output = createFragmentForView(getDataProvider()).setData(getDataProvider().getDataForModelClass(getDataModelSimpleInstance()));
+                break;
             case NODATA:
                 output = createFragmentForNoData(getDataProvider()).setActionWorker(createNoDataActionWorker());
+                break;
             case LOADER:
             default:
                 output = createFragmentForLoader(getDataProvider());

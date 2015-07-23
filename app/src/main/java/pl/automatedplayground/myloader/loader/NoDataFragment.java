@@ -20,11 +20,11 @@ public abstract class NoDataFragment<ACTIONWORKER extends NoDataActionWorker> ex
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_defaultnodata,null);
+        View view = inflater.inflate(R.layout.fragment_defaultnodata, null);
         return view;
     }
 
-    final public NoDataFragment setActionWorker(ACTIONWORKER worker){
+    final public NoDataFragment setActionWorker(ACTIONWORKER worker) {
         mActionWorker = worker;
         return this;
     }

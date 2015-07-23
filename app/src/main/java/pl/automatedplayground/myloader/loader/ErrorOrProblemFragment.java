@@ -30,14 +30,14 @@ public class ErrorOrProblemFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_default_retry,null);
+        View view = inflater.inflate(R.layout.fragment_default_retry, null);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getRetryListener()!=null)
+                if (getRetryListener() != null)
                     getRetryListener().onRetry();
                 else
-                    Toast.makeText(getActivity(),getClass().getName().toString()+" - RetryListener not set!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getClass().getName().toString() + " - RetryListener not set!", Toast.LENGTH_LONG).show();
             }
         });
         return view;

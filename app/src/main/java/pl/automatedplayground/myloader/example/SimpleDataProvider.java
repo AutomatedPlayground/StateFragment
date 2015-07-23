@@ -13,11 +13,12 @@ import pl.automatedplayground.myloader.loader.listeners.ResponseListener;
 public class SimpleDataProvider implements GenericDataProvider<SimpleDataModel> {
 
     Timer timer;
+    int counter = 0;
     private SimpleDataModel data = null;
 
     @Override
     public void prebufferData(final ResponseListener<SimpleDataModel> responseListener) {
-        if (data!=null && !shouldDataBeReloaded(data)) {
+        if (data != null && !shouldDataBeReloaded(data)) {
             responseListener.onResponseReceiver(data);
             return;
         }
@@ -25,8 +26,13 @@ public class SimpleDataProvider implements GenericDataProvider<SimpleDataModel> 
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                data = new SimpleDataModel().setData("Test");
-                responseListener.onResponseReceiver(getDataForModelClass(new SimpleDataModel()));
+                if (counter == 0)
+                    responseListener.onError(null);
+                else {
+                    data = new SimpleDataModel().setData("Test " + counter);
+                    responseListener.onResponseReceiver(getDataForModelClass(new SimpleDataModel()));
+                }
+                counter++;
                 timer = null;
             }
         }, 5000);

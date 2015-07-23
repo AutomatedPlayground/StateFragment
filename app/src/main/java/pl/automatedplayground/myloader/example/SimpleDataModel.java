@@ -7,10 +7,10 @@ package pl.automatedplayground.myloader.example;
 import pl.automatedplayground.myloader.loader.data.DataModel;
 
 public class SimpleDataModel extends DataModel {
-   public String data;
+    public String data;
 
-   public SimpleDataModel setData(String test) {
-      data = test;
-      return this;
-   }
+    public SimpleDataModel setData(String test) {
+        data = test;
+        return this;
+    }
 }
