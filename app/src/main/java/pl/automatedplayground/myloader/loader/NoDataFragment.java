@@ -14,7 +14,7 @@ import pl.automatedplayground.myloader.loader.listeners.NoDataActionWorker;
    Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.
    Copyright (c) 2015 Automated Playground under Apache 2.0 License
 */
-public class NoDataFragment<ACTIONWORKER extends NoDataActionWorker> extends Fragment {
+public abstract class NoDataFragment<ACTIONWORKER extends NoDataActionWorker> extends Fragment {
     private ACTIONWORKER mActionWorker;
 
     @Nullable

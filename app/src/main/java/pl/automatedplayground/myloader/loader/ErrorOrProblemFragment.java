@@ -15,7 +15,7 @@ import pl.automatedplayground.myloader.loader.listeners.ErrorOrProblemFragmentLi
    Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.
    Copyright (c) 2015 Automated Playground under Apache 2.0 License
 */
-public abstract class ErrorOrProblemFragment extends Fragment {
+public class ErrorOrProblemFragment extends Fragment {
     private ErrorOrProblemFragmentListener mListener;
 
     final public ErrorOrProblemFragment setRetryActionWorker(ErrorOrProblemFragmentListener worker) {

@@ -1,6 +1,5 @@
 package pl.automatedplayground.myloader.loader;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import icepick.Icepick;
 import icepick.Icicle;
 import pl.automatedplayground.myloader.R;
+import pl.automatedplayground.myloader.example.SimpleDataProvider;
 import pl.automatedplayground.myloader.loader.data.DataModel;
 import pl.automatedplayground.myloader.loader.data.FragmentStates;
 import pl.automatedplayground.myloader.loader.data.GenericDataProvider;
@@ -21,15 +21,16 @@ import pl.automatedplayground.myloader.loader.listeners.ResponseListener;
    Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.
    Copyright (c) 2015 Automated Playground under Apache 2.0 License
 */
-public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDER extends GenericDataProvider<DATAMODEL>, NODATAWORKER extends NoDataActionWorker, LOADER extends LoaderFragment<DATAPROVIDER>,
-        RETRY extends ErrorOrProblemFragment, NODATA extends NoDataFragment<NODATAWORKER>, DATA extends DataFragment<DATAMODEL>> extends Fragment implements ErrorOrProblemFragmentListener {
+public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDER extends GenericDataProvider<DATAMODEL>, NODATAWORKER extends NoDataActionWorker,
+        LOADER extends LoaderFragment<SimpleDataProvider>, DATA extends DataFragment<DATAMODEL>, NODATA extends NoDataFragment<NODATAWORKER>, RETRY extends ErrorOrProblemFragment>
+        extends Fragment implements ErrorOrProblemFragmentListener {
 
 
-    private static int staticID = 1;
+    private static int staticID = 2;
     @Icicle
-    private int generatedID = -1;
+    protected int generatedID = -1;
     @Icicle
-    private FragmentStates currentMode = null;
+    protected FragmentStates currentMode = null;
 
     private DATAPROVIDER mProvider;
 
@@ -57,10 +58,10 @@ public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDE
 
     @Override
     public void onResume() {
-        setDataProvider(bindDataProvider());
-        if (currentMode == FragmentStates.LOADER || (currentMode == FragmentStates.DATA && mProvider.shouldDataBeReloaded(getDataModelSimpleInstance())))
-            setState(FragmentStates.LOADER, true);
         super.onResume();
+        setDataProvider(bindDataProvider());
+        if (currentMode == null || currentMode == FragmentStates.LOADER || (currentMode == FragmentStates.DATA && mProvider.shouldDataBeReloaded(getDataModelSimpleInstance())))
+            setState(FragmentStates.LOADER, true);
     }
 
     @Override
@@ -76,12 +77,12 @@ public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDE
         return v;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (mProvider!=null && currentMode == null)
-            setState(FragmentStates.LOADER, true);
-    }
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+////        if (mProvider!=null && currentMode == null)
+////            setState(FragmentStates.LOADER, true);
+//    }
 
     /**
      * Get child fragment
@@ -122,7 +123,8 @@ public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDE
     }
 
     final private void showFragmentForCurrentMode() {
-        getFragmentManager().beginTransaction().replace(getGeneratedID(), createFragmentForMode(currentMode), getTagForChild()).commit();
+        View root = getView();
+        getFragmentManager().beginTransaction().replace(root.getId(), createFragmentForMode(currentMode), getTagForChild()).commit();
         if (currentMode == FragmentStates.LOADER) {
             // load data
             getDataProvider().prebufferData(new ResponseListener<DATAMODEL>() {
@@ -162,7 +164,7 @@ public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDE
      * @return
      */
     final private String getTagForChild() {
-        return getClass().getName().toString() + getGeneratedID();
+        return "00" + getClass().getName().toString() + getGeneratedID();
     }
 
 
