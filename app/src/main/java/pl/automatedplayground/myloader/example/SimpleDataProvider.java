@@ -7,8 +7,8 @@ package pl.automatedplayground.myloader.example;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import pl.automatedplayground.myloader.loader.data.GenericDataProvider;
-import pl.automatedplayground.myloader.loader.listeners.ResponseListener;
+import pl.automatedplayground.statefragment.data.GenericDataProvider;
+import pl.automatedplayground.statefragment.listeners.ResponseListener;
 
 public class SimpleDataProvider implements GenericDataProvider<SimpleDataModel> {
 

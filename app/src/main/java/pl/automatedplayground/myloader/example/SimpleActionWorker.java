@@ -3,7 +3,7 @@ package pl.automatedplayground.myloader.example;/*
    Copyright (c) 2015 Automated Playground under Apache 2.0 License
 */
 
-import pl.automatedplayground.myloader.loader.listeners.NoDataActionWorker;
+import pl.automatedplayground.statefragment.listeners.NoDataActionWorker;
 
 public interface SimpleActionWorker extends NoDataActionWorker {
 }

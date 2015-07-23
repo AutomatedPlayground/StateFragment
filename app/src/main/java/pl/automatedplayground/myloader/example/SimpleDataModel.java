@@ -4,7 +4,7 @@ package pl.automatedplayground.myloader.example;
    Copyright (c) 2015 Automated Playground under Apache 2.0 License
 */
 
-import pl.automatedplayground.myloader.loader.data.DataModel;
+import pl.automatedplayground.statefragment.data.DataModel;
 
 public class SimpleDataModel extends DataModel {
     public String data;

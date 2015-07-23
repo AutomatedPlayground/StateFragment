@@ -1,8 +1,8 @@
-package pl.automatedplayground.myloader.loader;
+package pl.automatedplayground.statefragment;
 
 import android.support.v4.app.Fragment;
 
-import pl.automatedplayground.myloader.loader.data.DataModel;
+import pl.automatedplayground.statefragment.data.DataModel;
 
 /*
    Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.

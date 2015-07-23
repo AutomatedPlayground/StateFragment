@@ -1,4 +1,4 @@
-package pl.automatedplayground.myloader.loader;
+package pl.automatedplayground.statefragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,18 +7,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pl.automatedplayground.myloader.R;
-import pl.automatedplayground.myloader.loader.data.GenericDataProvider;
+import pl.automatedplayground.statefragment.listeners.NoDataActionWorker;
 
 /*
    Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.
    Copyright (c) 2015 Automated Playground under Apache 2.0 License
 */
-public class LoaderFragment<DATAPROVIDER extends GenericDataProvider> extends Fragment {
+public abstract class NoDataFragment<ACTIONWORKER extends NoDataActionWorker> extends Fragment {
+    private ACTIONWORKER mActionWorker;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_default_loader, null);
+        View view = inflater.inflate(R.layout.fragment_default_nodata, null);
         return view;
+    }
+
+    final public NoDataFragment setActionWorker(ACTIONWORKER worker) {
+        mActionWorker = worker;
+        return this;
     }
 }

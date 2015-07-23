@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import pl.automatedplayground.myloader.R;
-import pl.automatedplayground.myloader.loader.DataFragment;
+import pl.automatedplayground.statefragment.DataFragment;
 
 public class SimpleDataFragment extends DataFragment<SimpleDataModel> {
     @Nullable

@@ -1,4 +1,4 @@
-package pl.automatedplayground.myloader.loader;
+package pl.automatedplayground.statefragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,21 +8,19 @@ import android.view.ViewGroup;
 
 import icepick.Icepick;
 import icepick.Icicle;
-import pl.automatedplayground.myloader.R;
-import pl.automatedplayground.myloader.example.SimpleDataProvider;
-import pl.automatedplayground.myloader.loader.data.DataModel;
-import pl.automatedplayground.myloader.loader.data.FragmentStates;
-import pl.automatedplayground.myloader.loader.data.GenericDataProvider;
-import pl.automatedplayground.myloader.loader.listeners.ErrorOrProblemFragmentListener;
-import pl.automatedplayground.myloader.loader.listeners.NoDataActionWorker;
-import pl.automatedplayground.myloader.loader.listeners.ResponseListener;
+import pl.automatedplayground.statefragment.data.DataModel;
+import pl.automatedplayground.statefragment.data.FragmentStates;
+import pl.automatedplayground.statefragment.data.GenericDataProvider;
+import pl.automatedplayground.statefragment.listeners.ErrorOrProblemFragmentListener;
+import pl.automatedplayground.statefragment.listeners.NoDataActionWorker;
+import pl.automatedplayground.statefragment.listeners.ResponseListener;
 
 /*
    Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.
    Copyright (c) 2015 Automated Playground under Apache 2.0 License
 */
 public abstract class StateFragmentHost<DATAMODEL extends DataModel, DATAPROVIDER extends GenericDataProvider<DATAMODEL>, NODATAWORKER extends NoDataActionWorker,
-        LOADER extends LoaderFragment<SimpleDataProvider>, DATA extends DataFragment<DATAMODEL>, NODATA extends NoDataFragment<NODATAWORKER>, RETRY extends ErrorOrProblemFragment>
+        LOADER extends LoaderFragment<DATAPROVIDER>, DATA extends DataFragment<DATAMODEL>, NODATA extends NoDataFragment<NODATAWORKER>, RETRY extends ErrorOrProblemFragment>
         extends Fragment implements ErrorOrProblemFragmentListener {
 
 

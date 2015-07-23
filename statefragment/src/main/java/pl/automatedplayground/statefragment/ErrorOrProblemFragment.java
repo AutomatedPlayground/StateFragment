@@ -1,4 +1,4 @@
-package pl.automatedplayground.myloader.loader;
+package pl.automatedplayground.statefragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import pl.automatedplayground.myloader.R;
-import pl.automatedplayground.myloader.loader.listeners.ErrorOrProblemFragmentListener;
+
+import pl.automatedplayground.statefragment.listeners.ErrorOrProblemFragmentListener;
 
 /*
    Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.

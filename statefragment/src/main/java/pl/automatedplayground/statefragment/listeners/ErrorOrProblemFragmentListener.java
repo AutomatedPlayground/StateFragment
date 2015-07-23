@@ -1,4 +1,4 @@
-package pl.automatedplayground.myloader.loader.listeners;
+package pl.automatedplayground.statefragment.listeners;
 
 /*
    Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.

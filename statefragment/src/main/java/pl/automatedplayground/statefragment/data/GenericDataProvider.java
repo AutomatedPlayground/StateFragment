@@ -1,6 +1,6 @@
-package pl.automatedplayground.myloader.loader.data;
+package pl.automatedplayground.statefragment.data;
 
-import pl.automatedplayground.myloader.loader.listeners.ResponseListener;
+import pl.automatedplayground.statefragment.listeners.ResponseListener;
 
 /*
    Created by Adrian Skupień (automatedplayground@gmail.com) on 20.07.15.

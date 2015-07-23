@@ -1,10 +1,10 @@
 package pl.automatedplayground.myloader.example;
 
-import pl.automatedplayground.myloader.loader.ErrorOrProblemFragment;
-import pl.automatedplayground.myloader.loader.LoaderFragment;
-import pl.automatedplayground.myloader.loader.NoDataFragment;
-import pl.automatedplayground.myloader.loader.StateFragmentHost;
-import pl.automatedplayground.myloader.loader.data.FragmentStates;
+import pl.automatedplayground.statefragment.ErrorOrProblemFragment;
+import pl.automatedplayground.statefragment.LoaderFragment;
+import pl.automatedplayground.statefragment.NoDataFragment;
+import pl.automatedplayground.statefragment.StateFragmentHost;
+import pl.automatedplayground.statefragment.data.FragmentStates;
 
 /**
  * A placeholder fragment containing a simple view.
